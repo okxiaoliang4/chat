@@ -1,19 +1,6 @@
 $(function() {
 	var jelfAnimateObject = new jelfAnimateObject(500);
 
-	jelfAnimateObject.messagesScrollToBottom();
-
-	$("#text").focus(function() {
-		jelfAnimateObject.messagesScrollToBottom();
-	});
-
-	// 输入框回车发送消息事件
-	$("#text").keydown(function(e) {
-		if(e.keyCode == 13) {
-			// TODO 发送消息
-		}
-	})
-
 	function jelfAnimateObject(speed) {
 		this.speed = speed;
 		this.slideNavOpen = function(speed) {
@@ -38,6 +25,7 @@ $(function() {
 				rotateZ: "-45deg",
 			}, speed);
 		};
+
 		this.messagesScrollToBottom = function(speed) {
 			$(".messages").animate({
 				scrollTop: $(".messages")[0].scrollHeight
@@ -54,4 +42,22 @@ $(function() {
 			}
 		});
 	}
+
+	function messageScroll(speed) {
+		var messageScrollHeight = $(".messages")[0].scrollHeight;
+	}
+
+	//	$(".messages").scrollTop($(".messages")[0].scrollHeight);
+		jelfAnimateObject.messagesScrollToBottom(1000);
+
+	//	$("#text").focus(function() {
+	//		jelfAnimateObject.messagesScrollToBottom(1000);
+	//	});
+
+	// 输入框回车发送消息事件
+	$("#text").keydown(function(e) {
+		if(e.keyCode == 13) {
+			// TODO 发送消息
+		}
+	})
 });

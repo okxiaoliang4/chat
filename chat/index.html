@@ -23,99 +23,7 @@
 						<input placeholder="搜索..." type="search" name="" id="">
 						<input type="submit" value="">
 					</form>
-					<ul class="list-friends">
-						<li>
-							<img width="50" height="50" src="img/0.jpg">
-							<div class="info">
-								<div class="user">用户1</div>
-								<div class="status on">在线</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/1.jpg">
-							<div class="info">
-								<div class="user">用户2</div>
-								<div class="status on">在线</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/2.jpg">
-							<div class="info">
-								<div class="user">用户3</div>
-								<div class="status off">离线 3 分钟以前</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/3.jpg">
-							<div class="info">
-								<div class="user">用户4</div>
-								<div class="status on">在线</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/4.jpg">
-							<div class="info">
-								<div class="user">用户5</div>
-								<div class="status off">离线 4 分钟以前</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/5.jpg">
-							<div class="info">
-								<div class="user">用户6</div>
-								<div class="status off">离线 12 分钟以前</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/6.jpg">
-							<div class="info">
-								<div class="user">用户7</div>
-								<div class="status off">离线 13 分钟以前</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/3.jpg">
-							<div class="info">
-								<div class="user">用户8</div>
-								<div class="status on">在线</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/0.jpg">
-							<div class="info">
-								<div class="user">用户9</div>
-								<div class="status off">离线 6 分钟以前</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/1.jpg">
-							<div class="info">
-								<div class="user">用户10</div>
-								<div class="status on">在线</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/4.jpg">
-							<div class="info">
-								<div class="user">用户11</div>
-								<div class="status off">离线 1 分钟以前</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/3.jpg">
-							<div class="info">
-								<div class="user">用户12</div>
-								<div class="status on">在线</div>
-							</div>
-						</li>
-						<li>
-							<img width="50" height="50" src="img/5.jpg">
-							<div class="info">
-								<div class="user">用户13</div>
-								<div class="status off">离线 23 分钟以前</div>
-							</div>
-						</li>
-					</ul>
+					<div id="list-friends-box"></div>
 				</div>
 			</div>
 			<div class="chat">
@@ -188,15 +96,20 @@
 					</li>
 				</ul>
 				<div class="write-form">
-					<textarea placeholder="输入信息" name="e" id="text" rows="2" maxlength="255"></textarea>
-					<div class="btn-primary btn" style="float: right;margin-right: 1%;">发送</div>
+					<textarea placeholder="输入信息" class="form-control" rows="3" maxlength="255"></textarea>
+					<div class="btn-primary btn send">发送</div>
 				</div>
 			</div>
 		</div>
-		<script src='js/jquery-1.11.1.min.js'></script>
-		<script src='js/angular.1.5.8.min.js'></script>
+		<script src="js/react.min.js"></script>
+		<script src="js/react-dom.min.js"></script>
+		<script src="js/browser.min.js"></script>
+		<script src="js/jquery-2.2.2.min.js"></script>
+		<script src="js/remarkable.min.js"></script>
+
+		<script type="text/babel" src="js/react-friends.js"></script>
+
 		<script src='js/velocity.js'></script>
-		<script src="js/myAnimateObject.js"></script>
 		<script src="js/index.js"></script>
 	</body>
 

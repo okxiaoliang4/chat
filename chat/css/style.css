@@ -12,8 +12,7 @@ body {
 body {
 	overflow: hidden;
 	font-family: "微软雅黑", 'Open Sans', sans-serif;
-	background-image: -webkit-linear-gradient(top right, rgba(255, 255, 255, 0.6), transparent 60%, rgba(0, 0, 0, 0.6)), -webkit-linear-gradient(bottom right, #a0d3e4, #97d1e7);
-	background-image: linear-gradient(to bottom left, rgba(255, 255, 255, 0.6), transparent 60%, rgba(0, 0, 0, 0.6)), linear-gradient(to top left, #a0d3e4, #97d1e7);
+	background-color: #fff;
 }
 
 .ui {
@@ -109,9 +108,11 @@ body {
 	border-radius: 50%;
 	border: 3px solid #696c75;
 	vertical-align: initial;
+	width: 50px;
+	height: 50px;
 }
 
-.ui .list-friends {
+.ui #list-friends-box {
 	list-style: none;
 	font-size: 13px;
 	height: 88%;
@@ -119,12 +120,12 @@ body {
 	overflow-x: hidden;
 }
 
-.ui .list-friends::-webkit-scrollbar {
+.ui #list-friends-box::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
 }
 
-.ui .list-friends::-webkit-scrollbar-thumb {
+.ui #list-friends-box::-webkit-scrollbar-thumb {
 	background: #C0C0C0;
 	border-radius: 5px;
 }
@@ -188,7 +189,7 @@ body {
 }
 
 .ui .messages {
-	height: calc(100% - 70px - 20%);
+	height: calc(100% - 70px - 70px);
 	list-style: none;
 	border: 2px solid #fff;
 	border-left: none;
@@ -200,6 +201,7 @@ body {
 .ui .messages::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
+	transition: all 0.5s;
 }
 
 .ui .messages::-webkit-scrollbar-track {
@@ -342,7 +344,7 @@ body {
 	display: inline-block;
 }
 
-.ui .send {
+/*.ui .send {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -366,6 +368,16 @@ body {
 .ui .send:hover {
 	color: #ffffff;
 	background-color: #2d5673;
+}*/
+
+.ui .send{
+	position: relative;
+	margin-top: -57px;
+	margin-right: 1%;
+	float: right;
+	height: 50px;
+	line-height: 50px;
+	padding: 0px 12px;
 }
 
 .ui i.fa-file-o {
