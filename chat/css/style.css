@@ -189,7 +189,7 @@ body {
 }
 
 .ui .messages {
-	height: calc(100% - 70px - 70px);
+	height: calc(100% - 70px - 200px);
 	list-style: none;
 	border: 2px solid #fff;
 	border-left: none;
@@ -201,7 +201,6 @@ body {
 .ui .messages::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
-	transition: all 0.5s;
 }
 
 .ui .messages::-webkit-scrollbar-track {
@@ -344,41 +343,19 @@ body {
 	display: inline-block;
 }
 
-/*.ui .send {
-	color: #ffffff;
-	text-transform: uppercase;
-	font-weight: 700;
-	float: right;
-	margin-right: 5%;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	display: block;
-	width: 70px;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	background-color: #3d81b1;
-	border-radius: 5px;
-	margin-right: 1%;
-}
-
-.ui .send:hover {
-	color: #ffffff;
-	background-color: #2d5673;
-}*/
-
-.ui .send{
-	position: relative;
-	margin-top: -57px;
+.ui .send {
 	margin-right: 1%;
 	float: right;
 	height: 50px;
 	line-height: 50px;
 	padding: 0px 12px;
 }
+
+
+/*.ui .send:hover {
+	color: #ffffff;
+	background-color: #2d5673;
+}*/
 
 .ui i.fa-file-o {
 	margin-left: 15px;
@@ -467,5 +444,11 @@ body {
 	}
 	.ui .write-form textarea {
 		margin: 0px 1% 5px 1%;
+	}
+	.ui .messages {
+		height: calc(100% - 70px - 65px);
+	}
+	.ui .send{
+		display: none;
 	}
 }
