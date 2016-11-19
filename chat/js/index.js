@@ -31,28 +31,19 @@ $(function() {
 				scrollTop: $(".messages")[0].scrollHeight
 			}, speed);
 		};
-
-		$(".slide-nav-button").on("click", function() {
-			if($(this).attr("data-isShowSlideNav") == "true") {
-				jelfAnimateObject.slideNavClose();
-				$(this).attr("data-isShowSlideNav", "false");
-			} else {
-				jelfAnimateObject.slideNavOpen();
-				$(this).attr("data-isShowSlideNav", "true");
-			}
-		});
 	}
 
-	function messageScroll(speed) {
-		var messageScrollHeight = $(".messages")[0].scrollHeight;
-	}
+	$(".slide-nav-button").on("click", function() {
+		if($(this).attr("data-isShowSlideNav") == "true") {
+			jelfAnimateObject.slideNavClose();
+			$(this).attr("data-isShowSlideNav", "false");
+		} else {
+			jelfAnimateObject.slideNavOpen();
+			$(this).attr("data-isShowSlideNav", "true");
+		}
+	});
 
-	//	$(".messages").scrollTop($(".messages")[0].scrollHeight);
-		jelfAnimateObject.messagesScrollToBottom(1000);
-
-	//	$("#text").focus(function() {
-	//		jelfAnimateObject.messagesScrollToBottom(1000);
-	//	});
+	jelfAnimateObject.messagesScrollToBottom(1000);
 
 	// 输入框回车发送消息事件
 	$("#text").keydown(function(e) {

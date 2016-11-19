@@ -1,40 +1,40 @@
-var Friends = React.createClass({displayName: "Friends",
+var Friends = React.createClass({
 	render: function() {
 		return( 
-			React.createElement(FriendsList, {data: this.props.data})
+			<FriendsList data = {this.props.data}/ >
 		);
 	}
 });
 
-var FriendsList = React.createClass({displayName: "FriendsList",
+var FriendsList = React.createClass({
 	render: function() {
 		var friendsRows = this.props.data.map(function(friend) {
 			return(
-				React.createElement(FriendsRow, {
-				headImg: friend.headImg, 
-				nickname: friend.nickname, 
-				statusClass: friend.statusClass, 
-				status: friend.status})
+				<FriendsRow 
+				headImg={friend.headImg} 
+				nickname={friend.nickname} 
+				statusClass={friend.statusClass}
+				status={friend.status}></FriendsRow>
 			);
 		});
 		return( 
-			React.createElement("ul", {className: "list-friends"}, 
-				friendsRows
-			)
+			<ul className="list-friends">
+				{friendsRows}
+			</ul>
 		);
 	}
 });
 
-var FriendsRow = React.createClass({displayName: "FriendsRow",
+var FriendsRow = React.createClass({
 	render: function() {
 		return(
-			React.createElement("li", null, 
-				React.createElement("img", {src: this.props.headImg}), 
-				React.createElement("div", {className: "info"}, 
-					React.createElement("div", {className: "user"}, " ", this.props.nickname, " "), 
-					React.createElement("div", {className: this.props.statusClass}, this.props.status)
-				)
-			)
+			<li>
+				<img src = {this.props.headImg}/>
+				<div className = "info" >
+					<div className = "user" > {this.props.nickname} < /div> 
+					<div className = {this.props.statusClass}>{this.props.status}< /div> 
+				</div>
+			</li>
 		);
 	}
 });
@@ -126,6 +126,6 @@ var friendlistdata = [{
 }];
 
 ReactDOM.render( 
-	React.createElement(Friends, {data: friendlistdata}) ,
+	<Friends data={friendlistdata}/> ,
 	document.getElementById("list-friends-box")
 );
