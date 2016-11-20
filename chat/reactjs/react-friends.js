@@ -1,7 +1,7 @@
 var Friends = React.createClass({
 	render: function() {
 		return( 
-			<FriendsList data = {this.props.data}/ >
+			<FriendsList data = {this.props.data} />
 		);
 	}
 });

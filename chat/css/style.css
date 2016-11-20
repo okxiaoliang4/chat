@@ -439,14 +439,12 @@ body {
 	.ui .chat {
 		width: 100%;
 	}
-	.ui #text {
-		max-height: 50px;
-	}
 	.ui .write-form textarea {
 		margin: 0px 1% 5px 1%;
+		height: 40%;
 	}
 	.ui .messages {
-		height: calc(100% - 70px - 65px);
+		height: calc(100% - 70px - 15%);
 	}
 	.ui .send{
 		display: none;
