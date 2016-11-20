@@ -212,6 +212,15 @@ body {
 	border-radius: 5px;
 }
 
+.ui .messages ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+}
+
+.ui .messages ._mCS_2 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+}
+
+.ui .messages ._mCS_3 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+}
+
 .ui .messages li {
 	margin: 10px;
 	-webkit-transition: all .5s;
@@ -269,22 +278,22 @@ body {
 	border-right: 10px solid transparent;
 }
 
-.ui .messages li.friend-with-a-SVAGina .name {
+.ui .messages li.friend-message .name {
 	margin-left: 20px;
 }
 
-.ui .messages li.friend-with-a-SVAGina .name:after {
+.ui .messages li.friend-message .name:after {
 	background-color: #62bf6e;
 	left: -20px;
 	top: 6px;
 }
 
-.ui .messages li.friend-with-a-SVAGina .message {
+.ui .messages li.friend-message .message {
 	background-color: #62bf6e;
 	float: left;
 }
 
-.ui .messages li.friend-with-a-SVAGina .message:before {
+.ui .messages li.friend-message .message:before {
 	left: 16px;
 	border-bottom-color: #62bf6e;
 }
@@ -446,7 +455,7 @@ body {
 	.ui .messages {
 		height: calc(100% - 70px - 15%);
 	}
-	.ui .send{
+	.ui .send {
 		display: none;
 	}
 }

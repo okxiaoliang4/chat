@@ -53,67 +53,67 @@ var friendlistdata = [{
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
+	headImg: "img/2.jpg",
+	nickname: "用户3",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/3.jpg",
+	nickname: "用户4",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/4.jpg",
+	nickname: "用户5",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/5.jpg",
+	nickname: "用户6",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/6.jpg",
+	nickname: "用户7",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
 	headImg: "img/1.jpg",
-	nickname: "用户2",
+	nickname: "用户8",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/3.jpg",
+	nickname: "用户9",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
 	headImg: "img/1.jpg",
-	nickname: "用户2",
+	nickname: "用户10",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
+	headImg: "img/5.jpg",
+	nickname: "用户11",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
+	headImg: "img/3.jpg",
+	nickname: "用户12",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/1.jpg",
-	nickname: "用户2",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/1.jpg",
+	headImg: "img/2.jpg",
 	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
