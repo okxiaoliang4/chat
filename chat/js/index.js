@@ -1,166 +1,197 @@
-$(function() {
-	function IsPC() {
-		var userAgentInfo = navigator.userAgent;
-		var Agents = ["Android", "iPhone",
-			"SymbianOS", "Windows Phone",
-			"iPad", "iPod"
-		];
-		var flag = true;
-		for(var v = 0; v < Agents.length; v++) {
-			if(userAgentInfo.indexOf(Agents[v]) > 0) {
-				flag = false;
-				break;
-			}
+loadHistoryMessages();
+loadFriends();
+
+function myAnimateObject(speed) {
+	this.speed = speed;
+	this.elements = {
+		$chat : $(".chat"),
+		$slideNav : $(".slide-friend"),
+		$slideNavButtonTop : $(".slide-friend-button-top"),
+		$slideNavButtonBottom : $(".slide-friend-button-bottom"),
+		$listMessagesBox : $("#list-messages-box")
+	};
+	this.slideNavOpen = function(speed) {
+		this.elements.$chat.velocity({
+			translateX : "40%"
+		}, speed);
+		this.elements.$slideNav.velocity({
+			translateX : "100%"
+		}, speed);
+		this.elements.$slideNavButtonTop.velocity({
+			rotateZ : "-45deg",
+		}, speed);
+		this.elements.$slideNavButtonBottom.velocity({
+			rotateZ : "45deg",
+		}, speed);
+	};
+	this.slideNavClose = function(speed) {
+		this.elements.$chat.velocity({
+			translateX : "0%"
+		}, speed);
+		this.elements.$slideNav.velocity({
+			translateX : "0%"
+		}, speed);
+		this.elements.$slideNavButtonTop.velocity({
+			rotateZ : "45deg",
+		}, speed);
+		this.elements.$slideNavButtonBottom.velocity({
+			rotateZ : "-45deg",
+		}, speed);
+	};
+	this.messagesScrollToBottom = function(speed) {
+		if (IsPC() && !$.browser.webkit) {
+			this.$listMessagesBox.mCustomScrollbar("update");
+			this.$listMessagesBox.mCustomScrollbar("scrollTo", "bottom");
+		} else {
+			this.$listMessagesBox.stop().animate({
+				scrollTop : this.$listMessagesBox[0].scrollHeight
+			}, speed);
 		}
-		return flag;
-	}
-	if(IsPC() && !$.browser.webkit) {
-		$.mCustomScrollbar.defaults.axis = "y"; //enable 2 axis scrollbars by default
-		$("#list-friends-box").mCustomScrollbar({
-			mouseWheelPixels: 200
+	};
+}
+
+var myAnimateObject = new myAnimateObject(500);
+
+var websocket;
+var webSocketErrorDisconnect = false;
+if ('WebSocket' in window) {
+	websocket = new WebSocket(socketPath);
+} else {
+	websocket = new SockJS(sockJSPath);
+}
+
+websocket.onopen = webSocketOnOpen;
+websocket.onmessage = webSocketOnMessage;
+websocket.onerror = webSocketOnError;
+websocket.onclose = webSocketOnClose;
+
+function webSocketOnOpen(event) {
+	console.log("连接成功");
+	window.clearInterval(websocket.breakTimer);
+	websocket.heartbeatTimer = setInterval(function() {// 心跳包
+		var heartbeatData = JSON.stringify({
+			"title" : "heartbeat",
+			"message" : "heartbeat"
 		});
-		$(".messages").mCustomScrollbar({
-			theme: "dark",
-			mouseWheelPixels: 200
-		});
-		$("#list-friends-box").css("overflow", "hidden");
-		$(".messages").css("overflow", "hidden");
+		websocket.send(heartbeatData);
+	}, 50000)
+}
+function webSocketOnMessage(result) {
+	var resultData = jQuery.parseJSON(result.data);
+	if (resultData.state == 1999) {
+		if (document.hidden) {// 如果瀏覽器當前標籤頁顯示的不是此頁面則調用HTML5桌面原生彈窗
+			showMsgNotification({
+				title : "系統通知",
+				message : resultData.message
+			});
+		} else {
+			myAlert(resultData.message);
+		}
+	} else if (resultData.title == "login") {
+		myComponentListFriend.friendStatus(resultData.data, true);
+	} else if (resultData.title == "logout") {
+		myComponentListFriend.friendStatus(resultData.data, false);
+	} else {
+		dealWithMessage(resultData);
 	}
-
-	var jelfAnimateObject = new jelfAnimateObject(500);
-
-	function jelfAnimateObject(speed) {
-		this.speed = speed;
-		this.slideNavOpen = function(speed) {
-			$(".slide-nav").velocity({
-				translateX: "100%"
-			}, speed);
-			$(".slide-nav-button-top").velocity({
-				rotateZ: "-45deg",
-			}, speed);
-			$(".slide-nav-button-bottom").velocity({
-				rotateZ: "45deg",
-			}, speed);
-		};
-		this.slideNavClose = function(speed) {
-			$(".slide-nav").velocity({
-				translateX: "0%"
-			}, speed);
-			$(".slide-nav-button-top").velocity({
-				rotateZ: "45deg",
-			}, speed);
-			$(".slide-nav-button-bottom").velocity({
-				rotateZ: "-45deg",
-			}, speed);
-		};
-
-		this.messagesScrollToBottom = function(speed) {
-			if(IsPC() && !$.browser.webkit) {
-				$(".messages").mCustomScrollbar("update");
-				$(".messages").mCustomScrollbar("scrollTo", "bottom");
+}
+function webSocketOnError(execption) {
+	webSocketErrorDisconnect = true;
+	console.log("连接出错");
+}
+function webSocketOnClose(event) {
+	window.clearInterval(websocket.heartbeatTimer);
+	websocket.breakTimer = setInterval(function() {
+		if (webSocketErrorDisconnect) {// 斷線重連機制
+			if ('WebSocket' in window) {
+				websocket = new WebSocket(socketPath);
 			} else {
-				$(".messages").animate({
-					scrollTop: $(".messages")[0].scrollHeight
-				}, speed);
+				websocket = new SockJS(sockJSPath);
 			}
-		};
+			websocket.onopen = webSocketOnOpen;
+			websocket.onmessage = webSocketOnMessage;
+			websocket.onerror = webSocketOnError;
+			websocket.onclose = webSocketOnClose;
+			webSocketErrorDisconnect = false;
+		}
+	}, 5000)
+	console.log("与服务器断开连接");
+}
+
+function sendMessage() {
+	if ($("#text").val().trim() == "") {
+		return;
+	}
+	if (websocket != null) {
+		var data = JSON.stringify({
+			"title" : "memberMessage",
+			"message" : $("#text").val().trim(),
+			"toMemberId" : recipientMemberId
+		});
+		$("#text").val("");
+		websocket.send(data);
+		myAnimateObject.messagesScrollToBottom(500);
+	} else {
+		alert('未与服务器链接.');
+	}
+}
+
+function dealWithMessage(resultData) {
+	if (document.hidden) {// 如果瀏覽器當前標籤頁顯示的不是此頁面則調用HTML5桌面原生彈窗
+		if (resultData.toMemberId == senderMemberId) {
+			var memberId = resultData.memberId;
+			var memberImgBase64Data = $(
+					".list-friends li[data-id=" + memberId + "] img").attr(
+					"src");
+			var memberName = $(
+					".list-friends li[data-id=" + memberId + "] .user").text();
+			showMsgNotification({
+				title : memberName
+						+ "  "
+						+ new Date(resultData.date)
+								.Format("yyyy-MM-dd hh:mm:ss"),
+				message : resultData.message,
+				Img : memberImgBase64Data
+			});
+		}
 	}
 
-	$(".slide-nav-button").on("click", function() {
-		if($(this).attr("data-isShowSlideNav") == "true") {
-			jelfAnimateObject.slideNavClose();
+	if (senderMemberId == resultData.memberId
+			|| senderMemberId == resultData.toMemberId
+			&& recipientMemberId == resultData.memberId) {// 當前聊天的人
+		myComponentListMessage.addOneData(resultData);
+		$(".count").text(parseInt($(".count").text()) + 1);
+	} else if ($(".list-friends li[data-id=" + resultData.memberId + "]").length == 0) {// 發送消息過來的人不是正在聊天的人
+		loadFriends();
+	}
+}
+
+$(function() {
+
+	$(".slide-friend-button").on("click", function() {
+		if ($(this).attr("data-isShowSlideNav") == "true") {
+			myAnimateObject.slideNavClose();
 			$(this).attr("data-isShowSlideNav", "false");
 		} else {
-			jelfAnimateObject.slideNavOpen();
+			myAnimateObject.slideNavOpen();
 			$(this).attr("data-isShowSlideNav", "true");
 		}
 	});
 
-	jelfAnimateObject.messagesScrollToBottom(1000);
-
-	// 输入框回车发送消息事件
-	$("#text").keydown(function(e) {
-		if(e.keyCode == 13) {
-			// TODO 发送消息
-		}
-	})
-	
-	var websocket;
-	if('WebSocket' in window) {
-		websocket = new WebSocket("ws://localhost:8080/SpringWebSocketHibernate/ws");
-	} else if('MozWebSocket' in window) {
-		websocket = new MozWebSocket("ws://ws");
-	} else {
-		websocket = new SockJS("http://localhost:8080/SpringWebSocketHibernate/sockjs/ws");
-	}
-	websocket.onopen = function(event) {
-		console.log("连接成功")
-	};
-	websocket.onmessage = function(event) {
-		dealWithMessage(event);
-	};
-	websocket.onerror = function(event) {
-		console.log("连接出错")
-	};
-	websocket.onclose = function(event) {
-		console.log("与服务器断开连接")
-	};
-
 	$(".send").bind('click', function() {
-		send();
+		sendMessage();
 	});
 
 	$("#text").keydown(function(e) {
-		if(e.keyCode == 13) {
-			send();
+		if (e.keyCode == 13) {
+			sendMessage();
 		}
 	});
-	$("#text").focus();
 
-	function send() {
-		if($("#text").val().trim() == "") {
-			return;
-		}
-		if(websocket != null) {
-			var data = JSON.stringify({
-				"toUserId": "91e8319d-2bef-48f9-b857-2bd139379399",
-				"message": $("#text").val().trim()
-			});
-			$("#text").val("");
-			websocket.send(data);
-		} else {
-			alert('未与服务器链接.');
-		}
-	}
+	$("#text").on("focus", function() {
+		myAnimateObject.messagesScrollToBottom();
+	});
 
-	function dealWithMessage(event) {
-		var data = jQuery.parseJSON(event.data);
-		var message = data.message.replace("&", "&amp;").replace("<", "&lt;");
-		var date = new Date(data.date).Format("hh:mm:ss");
-		console.log(message);
-		if(userId == data.userId) {
-			// 发送者
-			$(".messages")
-				.append(
-					"<li class='friend-message'>"+
-						"<div class='head'>"+
-							"<span class='time'>"+date+"</span>"+
-							"<span class='name'>friend</span>"+
-						"</div>"+
-						"<div class='message'>"+message+"</div>"+
-					"</li>");
-		} else {
-			$(".messages")
-				.append(
-					"<li class='i'>"+
-						"<div class='head'>"+
-							"<span class='time'>"+date+"</span>"+
-							"<span class='name'>我</span>"+
-						"</div>"+
-						"<div class='message'>"+message+"</div>"+
-					"</li>");
-		}
-		// TODO jquery scroll无法append进去
-		jelfAnimateObject.messagesScrollToBottom(1000);
-	}
+	Notification.requestPermission();// 获取允许桌面通知的权限
+
 });

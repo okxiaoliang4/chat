@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
+		<title>聊天室</title>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css" />
+	</head>
+
+	<body>
+		<div class="ui">
+			<div class="slide-nav">
+				<div class="slide-nav-button">
+					<div class="slide-nav-button-top"></div>
+					<div class="slide-nav-button-bottom"></div>
+				</div>
+				<div class="slide-nav-body">
+					<form action="#" class="search">
+						<input placeholder="搜索..." type="search" name="" id="">
+						<input type="submit" value="">
+					</form>
+					<div id="list-friends-box"></div>
+				</div>
+			</div>
+			<div class="chat">
+				<div class="top">
+					<div class="avatar">
+						<img width="50" height="50" src="img/0.jpg">
+					</div>
+					<div class="info">
+						<div class="name">用户1</div>
+						<div class="count">1901条聊天消息记录</div>
+					</div>
+					<i class="fa fa-star"></i>
+				</div>
+				<ul class="messages"></ul>
+				<div class="write-form">
+					<input id="text" placeholder="输入信息" class="form-control" maxlength="255"></textarea>
+					<div class="btn-primary btn send">发送</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var userId = "91e8319d-2bef-48f9-b857-2bd139379399";
+		</script>
+		<script src="js/react.min.js"></script>
+		<script src="js/react-dom.min.js"></script>
+		<script src="js/jquery-2.2.2.min.js"></script>
+		<script src="js/remarkable.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="js/react-friends.js"></script>
+		<script src='js/velocity.js'></script>
+		<script src="js/index.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/chatSocket.js"></script>
+	</body>
+
+</html>

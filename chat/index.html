@@ -1,121 +1,78 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
-		<title>聊天室</title>
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/animate.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css" />
-	</head>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
 
-	<body>
-		<div class="ui">
-			<div class="slide-nav">
-				<div class="slide-nav-button">
-					<div class="slide-nav-button-top"></div>
-					<div class="slide-nav-button-bottom"></div>
-				</div>
-				<div class="slide-nav-body">
-					<form action="#" class="search">
-						<input placeholder="搜索..." type="search" name="" id="">
-						<input type="submit" value="">
-					</form>
-					<div id="list-friends-box"></div>
-				</div>
+<title>聊天室</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/myAnimate.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/animate.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/jquery.mCustomScrollbar.min.css" />
+</head>
+
+<body>
+	<div class="ui">
+		<div class="slide-friend">
+			<div class="slide-friend-button">
+				<div class="slide-friend-button-top"></div>
+				<div class="slide-friend-button-bottom"></div>
 			</div>
-			<div class="chat">
-				<div class="top">
-					<div class="avatar">
-						<img width="50" height="50" src="img/0.jpg">
-					</div>
-					<div class="info">
-						<div class="name">用户1</div>
-						<div class="count">1901条聊天消息记录</div>
-					</div>
-					<i class="fa fa-star"></i>
-				</div>
-				<ul class="messages">
-					<li class="i">
-						<div class="head">
-							<span class="time">10:13 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">哈哈</div>
-					</li>
-					<li class="i">
-						<div class="head">
-							<span class="time">10:13 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">)</div>
-					</li>
-					<li class="i">
-						<div class="head">
-							<span class="time">10:14 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">haha</div>
-					</li>
-					<li class="i">
-						<div class="head">
-							<span class="time">10:14 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">haha</div>
-					</li>
-					<li class="i">
-						<div class="head">
-							<span class="time">10:14 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">haha</div>
-					</li>
-					<li class="i">
-						<div class="head">
-							<span class="time">10:14 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">haha</div>
-					</li>
-					<li class="i">
-						<div class="head">
-							<span class="time">10:14 AM, Today</span>
-							<span class="name">我</span>
-						</div>
-						<div class="message">haha</div>
-					</li>
-					<li class="friend-message">
-						<div class="head">
-							<span class="name">用户1</span>
-							<span class="time">10:15 AM, Today</span>
-						</div>
-						<div class="message">哈哈</div>
-					</li>
-				</ul>
-				<div class="write-form">
-					<textarea id="text" placeholder="输入信息" class="form-control" rows="3" maxlength="255"></textarea>
-					<div class="btn-primary btn send">发送</div>
-				</div>
+			<div class="slide-friend-body">
+				<div id="list-friends-box"></div>
 			</div>
 		</div>
-		<script>
-			var userId = "9a9c4f90-c720-4e1c-9ce5-30a33f0029bc";
-		</script>
-		<script src="js/react.min.js"></script>
-		<script src="js/react-dom.min.js"></script>
-		<script src="js/jquery-2.2.2.min.js"></script>
-		<script src="js/remarkable.min.js"></script>
-		<script src="js/jquery-migrate-1.2.1.min.js"></script>
-		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-		<script src="js/react-friends.js"></script>
-		<script src='js/velocity.js'></script>
-		<script src="js/index.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/chatSocket.js"></script>
-	</body>
+		<div class="chat">
+			<div class="top">
+				<div class="avatar">
+					<img width="50" height="50" src="" alt="agent頭像">
+				</div>
+				<div class="info">
+					<div id="memberName">用户1</div>
+					<div>
+						<span class="count"></span>條聊天消息記錄
+					</div>
+				</div>
+				<i class="fa fa-star"></i>
+			</div>
+			<div id="list-messages-box">
+				<ul class="messages"></ul>
+			</div>
+			<div class="write-form">
+				<input id="text" placeholder="输入信息回车键发送" class="form-control"
+					maxlength="1000">
+				<div class="btn-primary btn send">发送</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var senderMemberId = "${sessionScope.chatToken.memberId}";
+		var recipientMemberId = "${sessionScope.chatToken.toMemberId}";
+	</script>
+	<script src="js/constant.js"></script>
+	<script src="js/jquery-2.2.2.min.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src='js/velocity.js'></script>
+	<script src="js/util.js"></script>
+	<script src="js/api.js"></script>
+
+	<script src="js/react/react.min.js"></script>
+	<script src="js/react/react-dom.min.js"></script>
+	<script src="js/react/react-friends.js"></script>
+	<script src="js/react/react-message.js"></script>
+	<script src="js/react/remarkable.min.js"></script>
+
+	<script src="js/sockjs-1.1.1.min.js"></script>
+	<script src="js/index.js"></script>
+
+	<div class="myAlertBox"></div>
+</body>
 
 </html>

@@ -1,4 +1,4 @@
-var Friends = React.createClass({
+var Friends = React.createClass({displayName: "Friends",
 	getInitialState: function () {
 		return {
 			friendListData: []
@@ -25,32 +25,32 @@ var Friends = React.createClass({
 	},
 	render: function() {
 		return( 
-			<FriendsList friendListData={this.state.friendListData}/>
+			React.createElement(FriendsList, {friendListData: this.state.friendListData})
 		);
 	}
 });
 
-var FriendsList = React.createClass({
+var FriendsList = React.createClass({displayName: "FriendsList",
 	render: function() {
 		var friendsRows = this.props.friendListData.map(function(friend) {
 			return(
-				<FriendsRow 
-				id={friend.id}
+				React.createElement(FriendsRow, {
+				id: friend.id, 
 //				unread={friend.unread} 
-				photoData={friend.photoData} 
-				name={friend.name} 
-				online={friend.online}></FriendsRow>
+				photoData: friend.photoData, 
+				name: friend.name, 
+				online: friend.online})
 			);
 		});
 		return( 
-			<ul className="list-friends">
-				{friendsRows}
-			</ul>
+			React.createElement("ul", {className: "list-friends"}, 
+				friendsRows
+			)
 		);
 	}
 });
 
-var FriendsRow = React.createClass({
+var FriendsRow = React.createClass({displayName: "FriendsRow",
 	render: function() {
 //		if(this.props.unread>99){
 //			var unread = "99+";
@@ -73,19 +73,19 @@ var FriendsRow = React.createClass({
 			statusText = "離線";
 		}
 		return(
-			<li data-id={this.props.id}>
-				<img src = {photo} />
-				<div className = "info" >
-					<div className = "user" > {this.props.name} < /div> 
-					<div className = {statusClassName}>{statusText}< /div>
-				</div>
-			</li>
+			React.createElement("li", {"data-id": this.props.id}, 
+				React.createElement("img", {src: photo}), 
+				React.createElement("div", {className: "info"}, 
+					React.createElement("div", {className: "user"}, " ", this.props.name, " "), 
+					React.createElement("div", {className: statusClassName}, statusText)
+				)
+			)
 		);
 	}
 });
 
 var myComponentListFriend = ReactDOM.render( 
-	<Friends/> ,
+	React.createElement(Friends, null) ,
 	document.getElementById("list-friends-box")
 );
 

@@ -1,0 +1,163 @@
+@keyframes rightMessageUpdate {
+	from {
+		opacity: 0;
+		transform: translateX(10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+@-moz-keyframes rightMessageUpdate {
+	from {
+		opacity: 0;
+		transform: translateX(10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+@-webkit-keyframes rightMessageUpdate  {
+	from {
+		opacity: 0;
+		transform: translateX(10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+@-o-keyframes rightMessageUpdate  {
+	from {
+		opacity: 0;
+		transform: translateX(10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+
+@keyframes leftMessageUpdate {
+	from {
+		opacity: 0;
+		transform: translateX(-10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+@-moz-keyframes leftMessageUpdate {
+	from {
+		opacity: 0;
+		transform: translateX(-10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+@-webkit-keyframes leftMessageUpdate  {
+	from {
+		opacity: 0;
+		transform: translateX(-10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+@-o-keyframes leftMessageUpdate  {
+	from {
+		opacity: 0;
+		transform: translateX(-10%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+
+@keyframes myAlertShow {
+	from {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+@-moz-keyframes myAlertShow {
+	from {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+@-webkit-keyframes myAlertShow  {
+	from {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+@-o-keyframes myAlertShow  {
+	from {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+
+@keyframes myAlertHidden {
+	from {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+}
+@-moz-keyframes myAlertHidden {
+	from {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+}
+@-webkit-keyframes myAlertHidden  {
+	from {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+}
+@-o-keyframes myAlertHidden  {
+	from {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-30%);
+	}
+}

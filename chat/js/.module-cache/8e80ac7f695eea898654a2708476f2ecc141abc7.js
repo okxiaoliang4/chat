@@ -1,7 +1,7 @@
 var Friends = React.createClass({displayName: "Friends",
 	render: function() {
 		return( 
-			React.createElement(FriendsList, {data: this.props.data})
+			React.createElement(FriendsList, {data: this.props.data}/)
 		);
 	}
 });
@@ -39,6 +39,11 @@ var FriendsRow = React.createClass({displayName: "FriendsRow",
 	}
 });
 
+ReactDOM.render( 
+	React.createElement(Friends, {data: friendlistdata}) ,
+	document.getElementById("list-friends-box")
+);
+
 var friendlistdata = [{
 	id: 1,
 	headImg: "img/0.jpg",
@@ -53,67 +58,67 @@ var friendlistdata = [{
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/2.jpg",
-	nickname: "用户3",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/3.jpg",
-	nickname: "用户4",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/4.jpg",
-	nickname: "用户5",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/5.jpg",
-	nickname: "用户6",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/6.jpg",
-	nickname: "用户7",
+	headImg: "img/1.jpg",
+	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
 	headImg: "img/1.jpg",
-	nickname: "用户8",
-	statusClass:"status off",
-	status:"离线"
-}, {
-	id: 2,
-	headImg: "img/3.jpg",
-	nickname: "用户9",
+	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
 	headImg: "img/1.jpg",
-	nickname: "用户10",
+	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/5.jpg",
-	nickname: "用户11",
+	headImg: "img/1.jpg",
+	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/3.jpg",
-	nickname: "用户12",
+	headImg: "img/1.jpg",
+	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
 }, {
 	id: 2,
-	headImg: "img/2.jpg",
+	headImg: "img/1.jpg",
+	nickname: "用户2",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/1.jpg",
+	nickname: "用户2",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/1.jpg",
+	nickname: "用户2",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/1.jpg",
+	nickname: "用户2",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/1.jpg",
+	nickname: "用户2",
+	statusClass:"status off",
+	status:"离线"
+}, {
+	id: 2,
+	headImg: "img/1.jpg",
 	nickname: "用户2",
 	statusClass:"status off",
 	status:"离线"
@@ -125,7 +130,3 @@ var friendlistdata = [{
 	status:"在线"
 }];
 
-ReactDOM.render( 
-	React.createElement(Friends, {data: friendlistdata}) ,
-	document.getElementById("list-friends-box")
-);
